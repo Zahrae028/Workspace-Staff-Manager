@@ -1,0 +1,140 @@
+Staff Management Interface - README
+Description du projet
+
+Ce projet consiste à concevoir et développer une interface web permettant l’ajout, la gestion et la visualisation spatiale des employés d’une entreprise directement sur un plan d’étage interactif.
+L’objectif principal est d’offrir une interface intuitive, responsive et conforme aux règles métier (affectations autorisées selon les rôles).
+
+Objectifs
+
+Ajouter, déplacer et supprimer des employés depuis une interface graphique.
+
+Respecter les règles liées aux rôles pour l’affectation des employés.
+
+Offrir une interface moderne, fluide et adaptée à tous les écrans.
+
+Centraliser la gestion du personnel et de leur position dans les locaux.
+
+Rôles et fonctionnalités principales
+Conception (UI/UX)
+
+Création d’une interface intuitive.
+
+Palette de couleurs cohérente et icônes simples.
+
+Versions Desktop et Mobile.
+
+Mise en page avec Flexbox, Grid et animations CSS légères.
+
+Développement Front-End
+
+Structure HTML avec une section latérale pour les employés non assignés.
+
+Modale d’ajout comprenant : Nom, Rôle, Photo (URL), Email, Téléphone, Expériences professionnelles dynamiques.
+
+Prévisualisation de la photo.
+
+Affichage du plan du bâtiment (6 zones).
+
+Logique d’accès par rôle (Réception, Salle des serveurs, Sécurité…).
+
+Suppression d’un employé d’une zone via un bouton.
+
+Fiche détaillée d’un employé : photo, informations, expériences, localisation.
+
+Bouton d’ajout disponible dans chaque zone.
+
+Zones obligatoirement remplies mises en évidence.
+
+Limitation du nombre d’employés par zone.
+
+Responsive complet et validation W3C.
+
+Scrum
+
+Organisation du projet avec Trello, Jira ou GitHub Projects.
+
+Gestion optionnelle des branches Git.
+
+Présentation finale avec démonstration fonctionnelle.
+
+Zones du plan
+
+Salle de conférence
+
+Réception
+
+Salle des serveurs
+
+Salle de sécurité
+
+Salle du personnel
+
+Salle d’archives
+
+Tailles d’écran supportées
+
+Desktop large : plus de 1280px
+
+Desktop small : 1024 à 1279px
+
+Tablette : 768 à 1023px
+
+Mobile portrait : moins de 767px
+
+Mobile paysage : 768 à 1023px
+
+Bonus (optionnels)
+
+Drag & Drop des employés.
+
+Édition des employés dans la section "Unassigned".
+
+Recherche et filtrage par nom ou rôle.
+
+Sauvegarde automatique via localStorage.
+
+Réorganisation automatique des employés.
+
+Photo par défaut si aucune image n’est fournie.
+
+Modalités
+
+Durée : 5 jours
+
+Date de lancement : 14/11/2025
+
+Date limite : 21/11/2025
+
+Livrables
+
+Lien de planification
+
+Lien du dépôt GitHub
+
+Lien de déploiement
+
+Lien de la présentation
+
+Critères d’évaluation
+
+Dépôt GitHub complet et expliqué.
+
+Site entièrement responsive (Flexbox, Grid, media queries, etc.).
+
+Validation des formulaires et fonctionnement expliqué.
+
+Formulaires dynamiques fonctionnels.
+
+Fonctionnalités conformes au cahier des charges.
+
+Code clair et logique maîtrisée.
+
+Suivi du projet sur un outil de gestion.
+
+Présentation orale structurée et maîtrisée.
+
+Attitude professionnelle, constructive et respectueuse.
+
+Situation professionnelle
+
+Le projet répond au besoin d’améliorer une interface web existante jugée obsolète et peu ergonomique, afin d’offrir une expérience utilisateur plus moderne et agréable tout en conservant les fonctionnalités du système actuel.
