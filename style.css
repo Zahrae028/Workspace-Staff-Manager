@@ -21,17 +21,17 @@ header{
 
 aside {
     /* margin-top: 4rem; */
-    width: 190px;
+    width: 15%;
     height: 100%;
     /* background-color: aqua; */
     position: fixed;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color:  rgb(160, 160, 182);
     color: beige;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 /* main {
@@ -40,15 +40,17 @@ aside {
     width:  80%;
 } */
 .hero{
-    margin-left: 200px;
+    /* background-color: red; */
+    margin-left: 260px;
     /* padding-top: 6rem; */
-    width: 100%;
-    height: auto;
-    max-width: 800px;
-    padding-left: 1.4rem;
+    width:82% ;
+    height: 740px;
+    /* height: auto; */
+    /* max-width: 800px; */
+    /* padding-left: 1.4rem; */
 }
 .plan{
-    width: 82%;
+    /* width: 82%; */
     object-fit: contain;
     position: absolute;
     z-index: -1;
@@ -57,11 +59,20 @@ aside {
 
 .rooms{
     width: 100%;
+    height: 100%;
     /* height: 560px; */
     padding: 11px;
     display: grid;
     /* gap: 11px; */
-    grid-template-columns:
+
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas: 
+    "item1 item1 item1 . item2 item2 item3 item3"
+    "item4 item4 item4 . . . . ."
+    "item4 item4 item4 . item5 item5 item6 item6"
+    ;
+    /* grid-template-columns:
     minmax(380px,1fr)
     minmax(170px,1fr)
     minmax(230px,.7fr)
@@ -71,13 +82,13 @@ aside {
     grid-template-rows: 
     minmax(185px,1fr)
     minmax(140px,1fr)
-    minmax(140px,1.2fr);
+    minmax(140px,1.2fr); */
     
     
-    grid-template-areas:
+    /* grid-template-areas:
     "item1 . item2 item3"
     "item4 . . ."
-    "item4 . item5 item6"
+    "item4 . item5 item6" */
 }
 
     .item1 {grid-area: item1;}
@@ -108,7 +119,8 @@ ul {
     flex-direction: column;
     gap: 0.5rem;
 }
-.staff-form input{ 
+.staff-form input , .staff-form textarea{ 
+    padding: 0rem 0.4rem;
     height: 2rem;
     border-radius: 0.5rem;
     border: 1px solid;
@@ -148,6 +160,7 @@ ul {
     justify-content: center;
 }
 .add-form{
+    margin-bottom: 2rem;
     border-radius: 50px;
     border: none;
     background-color: rgb(129, 207, 207);
@@ -173,4 +186,47 @@ button{
 }
 .error-invis{
     display: none;
+}
+.submit{
+    align-self: center;
+    width: 20%;
+    padding: 00.6rem;
+    border-radius: 2rem;
+    border: none;
+}
+.staff-container{
+    list-style: none;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: antiquewhite;
+    color: rgb(54, 47, 59);
+    display: flex;
+    justify-content: space-between;
+}
+.staff-pic{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+    border:1px solid black;
+}
+.free-staff{
+    /* background-color: #ff3a20; */
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    /* background-color: #ff3a20; */
+    padding: 0rem;
+    overflow: scroll;
+    scrollbar-width: thin;
+}
+.delete{
+    background-color: #ff3a20;
+    color: aliceblue;
+    font-weight: 700;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 100%;
+    border: none;
+    
 }
