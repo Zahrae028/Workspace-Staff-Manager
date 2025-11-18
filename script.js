@@ -112,3 +112,22 @@ submit.addEventListener('click', (e) => {
     displayFreeStaff()
 })
 
+function displayFreeStaff() {
+
+    freeStaffList.innerHTML = ""
+
+    for (let i = 0; i < allStaff.length; i++) {
+        let li = document.createElement("li");
+        li.classList.add("staff-container");
+
+        li.innerHTML = `<img class="staff-pic" src="" alt="">
+                        <div>
+                            <p>${allStaff[i].name}</p>
+                            <p>${allStaff[i].role}</p>
+                        </div>
+                        <button class="delete">x</button>`;
+        freeStaffList.appendChild(li);
+        
+    }
+}
+displayFreeStaff()
