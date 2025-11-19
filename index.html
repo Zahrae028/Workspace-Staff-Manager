@@ -86,7 +86,7 @@
                 <p>Archives</p>
                 <button id="archives" class="plus">+</button>
                 <ul class="archives">
-                    
+
                 </ul>
             </div>
         </div>
@@ -94,9 +94,16 @@
 
     <div class="form-div invis" id="form-div">
         <form class="staff-form" id="staff-form">
+
+            <label class="circle-upload">
+                <input type="file" id="pic-input">
+                <img src="" id="show-pic" alt="" class="show-pic">
+            </label>
+            <p class="error errorvis"></p>
+
             <label>Full name :</label>
             <input type="text" name="name" id="full-name" required>
-            <p id="full-name-error" class="error ">vv</p>
+            <p id="full-name-error" class="error "></p>
 
             <label for="role">Role:</label>
             <select id="role" name="role" required>
@@ -110,9 +117,8 @@
 
             <p id="role-error" class="error errorvis"></p>
 
-            <label>Photo : </label>
-            <input type="url" name="photo" required>
-            <p class="error errorvis"></p>
+
+
 
             <label>Email : </label>
             <input type="email" name="email" id="email" required>
@@ -123,10 +129,43 @@
             <p id="phone-error" class="error errorvis"></p>
 
             <label>Professional experience :</label>
-            <textarea name="experience" id="experience" required>
+            <div class="experiences" id="experiences">
+                <div class="experience-item" data-experience-id="1">
+                    <div class="experience-grid">
 
-            </textarea>
+                        <!-- <button type="button" class="remove-experience">
+                            x
+                        </button> -->
+
+
+                        <label>Company</label>
+                        <input type="text" id="experience-company-1" class="companyName" placeholder="Company name">
+
+
+
+                        <label>Role</label>
+                        <input type="text" id="experience-role-1" class="roleCompany" placeholder="Role in company">
+
+
+
+                        <label>From</label>
+                        <input type="date" id="experience-from-1" class="experienceFrom">
+
+
+
+                        <label>To</label>
+                        <input type="date" id="experience-to-1" class="experienceTo">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
             <p class="error errorvis"></p>
+
+            <button type="button" id="add-exp-btn">Add Another Experience</button>
 
             <button class="submit" id="submit" type="submit">Add</button>
         </form>
@@ -140,6 +179,18 @@
             <button class="submit" id="close" type="submit">close</button>
         </div>
     </div>
+
+    <div class="more-info">
+        <div class="staff-card" id="staff-card-1">
+            <p class="staff-name" id="staff-name-1"></p>
+            <p class="staff-role" id="staff-role-1"></p>
+            <img class="staff-photo" id="staff-photo-1" src="" alt="Staff photo">
+            <p class="staff-email" id="staff-email-1"></p>
+            <p class="staff-phone" id="staff-phone-1"></p>
+            <div class="staff-experience" id="staff-experience-1"></div>
+        </div>
+    </div>
+
 </body>
 <script src="./js/script.js"></script>
 

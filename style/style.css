@@ -98,7 +98,7 @@ ul {
 }
 
 
-.staff-form ,.staff-select {
+.staff-form ,.staff-select , .more-info {
     border-radius: 1rem;
     padding: 2rem;
     background-color: rgb(182, 168, 160);
@@ -106,6 +106,18 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+.experience-grid{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.experience-grid input{
+    padding: 0rem 0.4rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
 }
 .staff-form input , .staff-form textarea{ 
     padding: 0rem 0.4rem;
@@ -136,7 +148,9 @@ ul {
     border-radius: 100%;
     border: none;
     font-size: larger;
-    background-color: rgb(129, 207, 207);
+    background-color: rgb(182, 168, 160);
+    color: aliceblue;
+    font-weight: 800;
     bottom: 0;
     padding: 10px 14px;
     
@@ -151,8 +165,8 @@ ul {
     margin-bottom: 2rem;
     border-radius: 50px;
     border: none;
-    background-color: rgb(129, 207, 207);
-    color: rgb(255, 255, 255);
+    background-color: rgb(247, 254, 254);
+    color: rgb(182, 168, 160);
     font-weight: 700;
     padding: 0.5rem;
 }
@@ -221,4 +235,32 @@ button{
 }
 .select{
     cursor: pointer;
+}
+.empty{
+    background-color: #ff3a209c;
+    backdrop-filter: contrast(2);
+}
+.circle-upload {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px dashed #ccc;
+    display: inline-block;
+    cursor: pointer;
+    align-self: center;
+    overflow: hidden;
+}
+
+.circle-upload input {
+    display: none; /* hide ugly file input */
+}
+.show-pic{
+    width: 100%;
+    object-fit: contain;
+    
+}
+.experiences{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
