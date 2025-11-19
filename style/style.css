@@ -125,7 +125,7 @@ ul {
     border-radius: 0.5rem;
     border: 1px solid;
 }
-.form-div,.select-div{
+.form-div,.select-div ,.more-info{
     top: 10%;
     left: 30%;
     

@@ -7,10 +7,14 @@ const assignRoomBtns = document.querySelectorAll('.plus')
 const selectDiv = document.getElementById('select-div')
 const staffSelectList = document.getElementById('staff-select-list')
 const closeBtn = document.getElementById('close')
+const closeInfo = document.getElementById('close-info')
 const picInput = document.getElementById("pic-input")
 const showPic = document.getElementById("show-pic")
 const addExp = document.getElementById('add-exp-btn')
 const experiencesDiv = document.getElementById('experiences')
+const moreInfoDiv = document.getElementById('more-info')
+// const staffContainers = document.querySelectorAll('staff-container')
+
 let expCount = 1
 
 picInput.addEventListener("change", () => {
@@ -255,3 +259,46 @@ function unassignStaff(staffId) {
 }
 
 displayStaff()
+
+freeStaffList.addEventListener('click', (e) => {
+    moreInfoDiv.classList.toggle('invis')
+    darkDiv.classList.toggle("overlay")
+    
+
+    const staffCard = document.getElementById('staff-card');
+    const staffName = document.getElementById('staff-name');
+    const staffRole = document.getElementById('staff-role');
+    const staffEmail = document.getElementById('staff-email');
+    const staffPhone = document.getElementById('staff-phone');
+    const staffExperience = document.getElementById('staff-experience');
+    const staffPhoto = document.getElementById('staff-photo');
+
+    const container = e.target.closest('.staff-container');
+
+    if (container) {
+        const staffId = Number(container.id);
+        const staff = allStaff.find(s => s.id === staffId);
+
+        if (staff) {
+            staffName.textContent = staff.name;
+            staffRole.textContent = staff.role;
+            staffEmail.textContent = staff.email;
+            staffPhone.textContent = staff.phone;
+            staffPhoto.src = staff.photo;
+
+            staffExperience.innerHTML = '';
+            for (let i = 0; i < staff.experience.length; i++) {
+                const exp = staff.experience[i];
+                const expDiv = document.createElement('div');
+                expDiv.textContent = `${exp.company} | ${exp.role} | ${exp.from} - ${exp.to}`;
+                staffExperience.appendChild(expDiv);
+            }
+
+            staffCard.classList.remove('invis');
+        }
+    }
+});
+closeInfo.addEventListener("click", (e) => {
+    moreInfoDiv.classList.toggle("invis")
+    darkDiv.classList.toggle("overlay")
+});
