@@ -21,7 +21,7 @@ header{
 
 aside {
     /* margin-top: 4rem; */
-    width: 15%;
+    width: 250px;
     height: 100%;
     /* background-color: aqua; */
     position: fixed;
@@ -211,14 +211,15 @@ button{
 }
 .free-staff{
     /* background-color: #ff3a20; */
-    max-height: 600px;
+    max-height: 6 00px;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     /* background-color: #ff3a20; */
     padding: 0rem;
     overflow: scroll;
-    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 .delete{
     background-color: #ff3a20;

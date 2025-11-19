@@ -2,6 +2,7 @@ const addForm = document.getElementById('add-form')
 const form = document.getElementById('form-div')
 const darkDiv = document.getElementById("dark-div")
 const freeStaffList = document.getElementById('free-staff-list')
+const deleteBtn = document.getElementById('delete')
 
 const submit = document.getElementById('submit')
 
@@ -19,9 +20,9 @@ const experError = document.getElementById('experience-error')
 
 
 
+
 addForm.addEventListener('click', () => {
 
-    console.log('hi')
 
     form.classList.toggle("invis")
     darkDiv.classList.toggle("overlay")
@@ -55,22 +56,17 @@ const validationRules = {
 let isFormValid;
 
 function validation(field) {
-    isFormValid = true;
-    let elementText = document.getElementById(`${field}-error`)
-    let element = document.getElementById(`${field}`)
-    console.log(elementText.textContent)
-    if (element.value == "") {
-        elementText.textContent = "please fill the required infos"
-        console.log(elementText.textContent)
+    let elementText = document.getElementById(`${field}-error`);
+    let element = document.getElementById(`${field}`);
 
-        isFormValid = false
-
+    if (element.value.trim() == "") {
+        elementText.textContent = "please fill the required infos";
+        isFormValid = false;
     } else if (!validationRules[field].regex.test(element.value)) {
-        elementText.textContent = validationRules[field].message
-        isFormValid = false
+        elementText.textContent = validationRules[field].message;
+        isFormValid = false;
     } else {
-        // console.log("it's full")
-        elementText.textContent = ""
+        elementText.textContent = "";
     }
 }
 
@@ -78,7 +74,7 @@ const allStaff = JSON.parse(localStorage.getItem("allStaff")) || [];
 
 submit.addEventListener('click', (e) => {
     e.preventDefault()
-
+    isFormValid = true;
     Object.keys(validationRules).forEach(field => {
         validation(field);
     });
@@ -91,11 +87,13 @@ submit.addEventListener('click', (e) => {
 
 
     const newStaff = {
+        id: Date.now(),
         name: fullName,
         role: role,
         email: email,
         phone: phoneNum,
         experience: exper,
+        location: ""
     }
     Object.keys(validationRules).forEach(field => {
         validation(field);
@@ -106,9 +104,13 @@ submit.addEventListener('click', (e) => {
 
         allStaff.push(newStaff);
         localStorage.setItem("allStaff", JSON.stringify(allStaff));
+
+        form.classList.toggle("invis")
+        darkDiv.classList.toggle("overlay")
     }
 
     console.log(allStaff[0].name)
+    console.log(allStaff[0].id)
     displayFreeStaff()
 })
 
@@ -119,15 +121,27 @@ function displayFreeStaff() {
     for (let i = 0; i < allStaff.length; i++) {
         let li = document.createElement("li");
         li.classList.add("staff-container");
+        li.id = allStaff[i].id
 
         li.innerHTML = `<img class="staff-pic" src="" alt="">
                         <div>
                             <p>${allStaff[i].name}</p>
                             <p>${allStaff[i].role}</p>
                         </div>
-                        <button class="delete">x</button>`;
+                        <button onclick="removeStaff(${allStaff[i].id})" class="delete">x</button>`;
         freeStaffList.appendChild(li);
-        
+
     }
+}
+
+function removeStaff(id) {
+    for (let i = 0; i < allStaff.length; i++) {
+        if (allStaff[i].id === id) {
+            allStaff.splice(i, 1);
+        }
+    }
+
+    localStorage.setItem("allStaff", JSON.stringify(allStaff));
+    displayFreeStaff();
 }
 displayFreeStaff()

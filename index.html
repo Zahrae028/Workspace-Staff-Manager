@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
-<body >
+<body>
 
     <!-- <header>
         <h1>Workspace Staff Manager</h1>
@@ -17,9 +17,9 @@
 
     <aside>
         <h2>Unassigned Staff</h2>
-        
+
         <ul id="free-staff-list" class="free-staff">
-           <!-- <li class="staff-container">
+            <!-- <li class="staff-container">
                 <img class="staff-pic" src="" alt="">
                 <div>
                     <p>ahmed sef</p>
@@ -38,27 +38,38 @@
         <button class="add-form" id="add-form">Add New Worker</button>
     </aside>
 
-    
+
     <main class="hero">
-        <img class="plan" src="plan-6918d7e78ba30539026036.jpg" alt="">
+        <img class="plan" src="./img/plan-6918d7e78ba30539026036.jpg" alt="">
         <div class="rooms">
-            <div class="item1">1
-               
+            <div class="item1" id="conference-room">
+                <p>Conference Room</p>
                 <button id="add-staff" class="plus">+</button>
             </div>
-            <div class="item2">2
+
+            <div class="item2" id="server-room">
+                <p>Server Room</p>
                 <button id="add-staff" class="plus">+</button>
             </div>
-            <div class="item3">3
+
+            <div class="item3" id="security-room">
+                <p>Security Room</p>
                 <button id="add-staff" class="plus">+</button>
             </div>
-            <div class="item4">4
+
+            <div class="item4" id="reception">
+                <p>Reception</p>
+                
                 <button id="add-staff" class="plus">+</button>
             </div>
-            <div class="item5">5
+
+            <div class="item5" id="staff-room">
+                <p>Staff Room</p>
                 <button id="add-staff" class="plus">+</button>
             </div>
-            <div class="item6">6
+
+            <div class="item6" id="archives">
+                <p>Archives</p>
                 <button id="add-staff" class="plus">+</button>
             </div>
         </div>
@@ -67,34 +78,44 @@
     <div class="form-div invis" id="form-div">
         <form class="staff-form" id="staff-form">
             <label>Full name :</label>
-            <input type="text" name="name" id="full-name" required> 
+            <input type="text" name="name" id="full-name" required>
             <p id="full-name-error" class="error ">vv</p>
 
-            <label>Role : </label>
-            <input type="text" name="role" id="role" required> 
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="">--Select Role--</option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="IT Technician">IT Technician</option>
+                <option value="Security Officer">Security Officer</option>
+                <option value="Manager">Manager</option>
+                <option value="Cleaning">Cleaning</option>
+            </select>
+
             <p id="role-error" class="error errorvis"></p>
 
             <label>Photo : </label>
-            <input type="url" name="photo" required> 
+            <input type="url" name="photo" required>
             <p class="error errorvis"></p>
 
             <label>Email : </label>
-            <input type="email" name="email" id="email" required> 
+            <input type="email" name="email" id="email" required>
             <p id="email-error" class="error errorvis"></p>
 
             <label>Phone number : </label>
-            <input type="tel" name="phone" id="phone" required> 
+            <input type="tel" name="phone" id="phone" required>
             <p id="phone-error" class="error errorvis"></p>
 
             <label>Professional experience :</label>
-            <textarea name="experience" id="experience" required> 
-                
-            </textarea><p class="error errorvis"></p>
+            <textarea name="experience" id="experience" required>
+
+            </textarea>
+            <p class="error errorvis"></p>
 
             <button class="submit" id="submit" type="submit">Add</button>
         </form>
     </div>
 
 </body>
-<script src="script.js"></script>
+<script src="./js/script.js"></script>
+
 </html>
