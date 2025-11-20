@@ -32,7 +32,6 @@ picInput.addEventListener("change", () => {
         showPic.src = URL.createObjectURL(picInput.files[0]);
     }
 });
-
 addExp.addEventListener("click", (e) => {
     expCount++;
     const expDiv = document.createElement('div');
@@ -49,11 +48,14 @@ addExp.addEventListener("click", (e) => {
         <input type="date" class="experienceFrom">
         <label>To</label>
         <input type="date" class="experienceTo">
+        <p class="error experienceError" id="experience-error" ></p>
+        <button class="remove-experience" id="remove-exp-btn-${expDiv.dataset.experienceId}">remove experience</button>
       </div>
     `;
     experiencesDiv.appendChild(expDiv);
-    expDiv.querySelector(".remove-experience").addEventListener("click", () => {
-        expDiv.remove();
+    const removeExp = document.getElementById(`remove-exp-btn-${expDiv.dataset.experienceId}`).addEventListener("click", () => {
+        expDiv.remove()
+        
     });
 });
 
@@ -144,9 +146,9 @@ function displayFreeStaffToAssign() {
                         </div>
                         <button class="select" data-id="${staff.id}">+</button>`;
         staffSelectList.appendChild(li);
-        
+
     });
-   emptyZone("reception")
+    emptyZone("reception")
     emptyZone("server-room")
     emptyZone("security-room")
 }
@@ -162,6 +164,19 @@ const validationRules = {
     'email': { regex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: "Enter a valid email." },
     'phone': { regex: /^\d{10}$/, message: "Enter a 10-digit phone number." },
 };
+
+let validDate;
+function validateDate(from, to , errorMessage) {
+    
+    if (from > to) {
+        errorMessage.textContent = "Date is invalid";
+        validDate = false
+    }else{
+        errorMessage.textContent = ""
+    }
+    
+}
+
 
 let isFormValid;
 
@@ -185,24 +200,49 @@ const allStaff = JSON.parse(localStorage.getItem("allStaff")) || [];
 submit.addEventListener('click', (e) => {
     e.preventDefault()
     isFormValid = true;
+    validDate = true
     Object.keys(validationRules).forEach(field => validation(field));
     const fullName = document.getElementById("full-name").value
     const role = document.getElementById('role').value
     const email = document.getElementById("email").value
     const phoneNum = document.getElementById('phone').value
+
+    const experienceItemsReused = staffForm.querySelectorAll('.experience-item');
+    experienceItemsReused.forEach(expDiv => {
+    const from = expDiv.querySelector('.experienceFrom').value;
+    const to = expDiv.querySelector('.experienceTo').value;
+    const errorMessage = expDiv.querySelector('.experienceError');
+    validateDate(from, to, errorMessage);
+});
+
     let photoURL = "";
+
     if (picInput.files && picInput.files[0]) photoURL = URL.createObjectURL(picInput.files[0]);
-    const newStaff = { id: Date.now(), photo: photoURL, name: fullName, role: role, email: email, phone: phoneNum, experience: [], isAssigned: false, location: "" }
+
+    const newStaff = {
+        id: Date.now(),
+        photo: photoURL,
+        name: fullName,
+        role: role,
+        email: email,
+        phone: phoneNum,
+        experience: [],
+        isAssigned: false,
+        location: ""
+    }
     const experienceItems = staffForm.querySelectorAll('.experience-item');
+
     experienceItems.forEach(expDiv => {
+
         newStaff.experience.push({
             company: expDiv.querySelector('.companyName').value,
             role: expDiv.querySelector('.roleCompany').value,
             from: expDiv.querySelector('.experienceFrom').value,
-            to: expDiv.querySelector('.experienceTo').value
+            to: expDiv.querySelector('.experienceTo').value,
+            errorMessage:  expDiv.querySelector('.experienceError')
         });
     });
-    if (isFormValid) {
+    if (isFormValid && validDate) {
         allStaff.push(newStaff);
         rooms["free-staffs"].staff.push(newStaff.id)
         localStorage.setItem("allStaff", JSON.stringify(allStaff));
@@ -230,9 +270,11 @@ function displayStaff() {
         }
     }
     displayFreeStaffToAssign()
-     emptyZone("reception")
+    emptyZone("reception")
     emptyZone("server-room")
     emptyZone("security-room")
+    displayAllAssigned()
+
 }
 
 function removeStaff(id) {
@@ -277,7 +319,7 @@ displayStaff()
 freeStaffList.addEventListener('click', (e) => {
     moreInfoDiv.classList.toggle('invis')
     darkDiv.classList.toggle("overlay")
-    
+
 
     const staffCard = document.getElementById('staff-card');
     const staffName = document.getElementById('staff-name');
@@ -312,6 +354,50 @@ freeStaffList.addEventListener('click', (e) => {
         }
     }
 });
+const roomsDiv = document.querySelectorAll('.room')
+roomsDiv.forEach(roomDiv =>{ roomDiv.addEventListener('click', (e) => {
+    moreInfoDiv.classList.toggle('invis')
+    darkDiv.classList.toggle("overlay")
+
+
+    const staffCard = document.getElementById('staff-card');
+    const staffName = document.getElementById('staff-name');
+    const staffRole = document.getElementById('staff-role');
+    const staffEmail = document.getElementById('staff-email');
+    const staffPhone = document.getElementById('staff-phone');
+    const staffExperience = document.getElementById('staff-experience');
+    const staffPhoto = document.getElementById('staff-photo');
+
+    const container = e.target.closest('.staff-container');
+
+    if (container) {
+        const staffId = Number(container.id);
+        const staff = allStaff.find(s => s.id === staffId);
+
+        if (staff) {
+            staffName.textContent = staff.name;
+            staffRole.textContent = staff.role;
+            staffEmail.textContent = staff.email;
+            staffPhone.textContent = staff.phone;
+            staffPhoto.src = staff.photo;
+
+            staffExperience.innerHTML = '';
+            for (let i = 0; i < staff.experience.length; i++) {
+                const exp = staff.experience[i];
+                const expDiv = document.createElement('div');
+                expDiv.textContent = `${exp.company} | ${exp.role} | ${exp.from} - ${exp.to}`;
+                staffExperience.appendChild(expDiv);
+            }
+
+            staffCard.classList.remove('invis');
+        }
+    }
+});}
+
+
+
+)
+
 closeInfo.addEventListener("click", (e) => {
     moreInfoDiv.classList.toggle("invis")
     darkDiv.classList.toggle("overlay")
