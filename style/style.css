@@ -189,7 +189,7 @@ button{
 .error-invis{
     display: none;
 }
-.submit{
+.submit , .select{
     align-self: center;
     width: 20%;
     padding: 00.6rem;

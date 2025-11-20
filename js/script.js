@@ -15,6 +15,16 @@ const experiencesDiv = document.getElementById('experiences')
 const moreInfoDiv = document.getElementById('more-info')
 // const staffContainers = document.querySelectorAll('staff-container')
 
+const rooms = JSON.parse(localStorage.getItem("rooms")) || {
+    "reception": { staff: [], roles: ["Receptionist", "Manager"] },
+    "server-room": { staff: [], roles: ["IT Technician", "Manager"] },
+    "security-room": { staff: [], roles: ["Security Officer", "Manager"] },
+    "staff-room": { staff: [], roles: ["all"] },
+    "conference-room": { staff: [], roles: ["all"] },
+    "archives": { staff: [], roles: ["Manager"] },
+    "free-staffs": { staff: [], roles: [] }
+};
+
 let expCount = 1
 
 picInput.addEventListener("change", () => {
@@ -114,6 +124,9 @@ assignRoomBtns.forEach(plusBtn => {
             })
         })
     })
+    emptyZone("reception")
+    emptyZone("server-room")
+    emptyZone("security-room")
 })
 
 
@@ -131,7 +144,11 @@ function displayFreeStaffToAssign() {
                         </div>
                         <button class="select" data-id="${staff.id}">+</button>`;
         staffSelectList.appendChild(li);
+        
     });
+   emptyZone("reception")
+    emptyZone("server-room")
+    emptyZone("security-room")
 }
 
 addForm.addEventListener('click', () => {
@@ -162,15 +179,6 @@ function validation(field) {
     }
 }
 
-const rooms = JSON.parse(localStorage.getItem("rooms")) || {
-    "reception": { staff: [], roles: ["Receptionist", "Manager"] },
-    "server-room": { staff: [], roles: ["IT Technician", "Manager"] },
-    "security-room": { staff: [], roles: ["Security Officer", "Manager"] },
-    "staff-room": { staff: [], roles: ["all"] },
-    "conference-room": { staff: [], roles: ["all"] },
-    "archives": { staff: [], roles: ["Manager"] },
-    "free-staffs": { staff: [], roles: [] }
-};
 
 const allStaff = JSON.parse(localStorage.getItem("allStaff")) || [];
 
@@ -222,6 +230,9 @@ function displayStaff() {
         }
     }
     displayFreeStaffToAssign()
+     emptyZone("reception")
+    emptyZone("server-room")
+    emptyZone("security-room")
 }
 
 function removeStaff(id) {
@@ -256,6 +267,9 @@ function unassignStaff(staffId) {
     displayStaff();
     displayAllAssigned()
     displayFreeStaffToAssign()
+    emptyZone("reception")
+    emptyZone("server-room")
+    emptyZone("security-room")
 }
 
 displayStaff()
@@ -302,3 +316,13 @@ closeInfo.addEventListener("click", (e) => {
     moreInfoDiv.classList.toggle("invis")
     darkDiv.classList.toggle("overlay")
 });
+
+function emptyZone(room) {
+    const roomDiv = document.querySelector(`.${room}-div`);
+    if (rooms[room].staff.length === 0) {
+        roomDiv.classList.add('empty');
+    } else {
+        roomDiv.classList.remove('empty');
+    }
+}
+
