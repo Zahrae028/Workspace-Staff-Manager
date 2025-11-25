@@ -110,7 +110,6 @@ assignRoomBtns.forEach(plusBtn => {
                 let roomArray = plusBtn.id
                 let staff = allStaff.find(s => s.id === staffId)
 
-                // Check if the staff role matches the allowed roles in the room
                 if (staff && (rooms[roomArray].roles.includes(staff.role) || rooms[roomArray].roles.includes("all"))) {
                     rooms[roomArray].staff.push(staffId)
                     let index = rooms["free-staffs"].staff.indexOf(staffId)
