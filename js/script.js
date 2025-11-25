@@ -16,12 +16,12 @@ const moreInfoDiv = document.getElementById('more-info')
 // const staffContainers = document.querySelectorAll('staff-container')
 
 const rooms = JSON.parse(localStorage.getItem("rooms")) || {
-    "reception": { staff: [], roles: ["Receptionist", "Manager"] },
-    "server-room": { staff: [], roles: ["IT Technician", "Manager"] },
-    "security-room": { staff: [], roles: ["Security Officer", "Manager"] },
-    "staff-room": { staff: [], roles: ["all"] },
-    "conference-room": { staff: [], roles: ["all"] },
-    "archives": { staff: [], roles: ["Manager"] },
+    "reception": { staff: [], roles: ["Receptionist", "Manager"]  },
+    "server-room": { staff: [], roles: ["IT Technician", "Manager"]  },
+    "security-room": { staff: [], roles: ["Security Officer", "Manager"]  },
+    "staff-room": { staff: [], roles: ["all"]  },
+    "conference-room": { staff: [], roles: ["all"]  },
+    "archives": { staff: [], roles: ["Manager"]  },
     "free-staffs": { staff: [], roles: [] }
 };
 
@@ -32,6 +32,8 @@ picInput.addEventListener("change", () => {
         showPic.src = URL.createObjectURL(picInput.files[0]);
     }
 });
+
+
 addExp.addEventListener("click", (e) => {
     expCount++;
     const expDiv = document.createElement('div');
@@ -63,6 +65,7 @@ closeBtn.addEventListener("click", (e) => {
     selectDiv.classList.toggle("invis")
     darkDiv.classList.toggle("overlay")
 });
+
 
 function displayAssign(assignRoom) {
     const roomToBe = document.querySelector(`.${assignRoom}`);
@@ -292,6 +295,9 @@ function removeStaff(id) {
     displayStaff();
     localStorage.setItem("allStaff", JSON.stringify(allStaff));
     localStorage.setItem("rooms", JSON.stringify(rooms));
+
+    moreInfoDiv.classList.toggle('invis')
+    darkDiv.classList.toggle("overlay")
 }
 
 function unassignStaff(staffId) {
@@ -312,6 +318,10 @@ function unassignStaff(staffId) {
     emptyZone("reception")
     emptyZone("server-room")
     emptyZone("security-room")
+
+     moreInfoDiv.classList.toggle('invis')
+    darkDiv.classList.toggle("overlay")
+    
 }
 
 displayStaff()
@@ -410,5 +420,9 @@ function emptyZone(room) {
     } else {
         roomDiv.classList.remove('empty');
     }
+}
+
+function limit(){
+    
 }
 

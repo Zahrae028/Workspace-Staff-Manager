@@ -51,7 +51,7 @@ aside {
 }
 
 .plan {
-    width: 100%;
+    width: 102%;
     display: block;     
 }
 
@@ -321,7 +321,7 @@ button {
     gap: 2rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
     /* .plan {
     width: 100%;
